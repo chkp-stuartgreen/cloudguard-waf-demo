@@ -5,7 +5,6 @@ server {
 
   listen 80;
   location / {
-    cp-nano-nginx-attachment on;
     proxy_pass http://juiceshop_host/;
   }
 }
