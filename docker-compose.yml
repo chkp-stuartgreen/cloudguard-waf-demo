@@ -13,3 +13,15 @@ services:
       context: ./nginx-reverse-proxy
     ports:
       - '80:80'
+    ipc: host
+  agent-container:
+    ipc: host
+    volumes:
+      - ./agent-container/data:/etc/cp/data
+      - ./agent-container/conf:/etc/cp/conf
+      - ./agent-container/logs:/var/log/nano_agent
+    build:
+      dockerfile: Dockerfile
+      context: ./agent-container
+    command: ["/cp-nano-agent", "--token", "$TOKEN"]
+
