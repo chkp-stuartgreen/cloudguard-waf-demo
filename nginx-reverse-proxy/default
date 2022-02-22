@@ -3,7 +3,7 @@ upstream juiceshop_host {
   server juice-shop:3000;
 }
 server {
-  server_name juiceshop.local;
+  server_name ${NGINX_SERVER_FQDN};
   listen 80;
   location / {
     proxy_pass http://juiceshop_host/;
