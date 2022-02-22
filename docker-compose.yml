@@ -9,15 +9,20 @@ services:
         - '3000:3000'
 
   nginx-reverse-proxy:
-    #build:
-    #  dockerfile: Dockerfile
-    #  context: ./nginx-reverse-proxy
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx-reverse-proxy
+      args:
+        NGINX_SERVER_FQDN: 
     ports:
       - '80:80'
     ipc: host
-    image: checkpoint/infinity-next-nginx
-    volumes:
-      - ./nginx-reverse-proxy/default:/etc/nginx/conf.d/default.conf
+    #image: checkpoint/infinity-next-nginx
+    #volumes:
+    #  - ./nginx-reverse-proxy/default:/etc/nginx/conf.d/default.conf
+    
+    
+
   agent-container:
     ipc: host
     volumes:
