@@ -11,12 +11,16 @@ You will have two ways to access the stack:
  
 * Clone the repository
 * From a machine with docker and docker-compose installed, run:  
-`  export TOKEN=<your agent token>`  
-` docker-compose down -v --remove-orphans` (to remove any old images)
-` docker-compose build `
-`  docker-compose up `  
-__Insert awesome demo here :)__  
-`  docker-compose down `  
+```  export TOKEN=<your agent token>  
+docker-compose down -v --remove-orphans
+docker-compose build
+docker-compose up
+```
+[DEMO HERE]
+
+```
+docker-compose down
+```
  
 
 
