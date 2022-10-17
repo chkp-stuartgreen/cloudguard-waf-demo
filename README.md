@@ -10,6 +10,7 @@ You will have two ways to access the stack:
 ## Instructions:
  
 * Clone the repository
+* If you are planning to use a DNS entry for your hostname - you'll need to pass this in the .env file. You can also add your token here, or define it at runtime as per below.
 * From a machine with docker and docker-compose installed, run:  
 ```  
 export TOKEN=<your agent token>  
