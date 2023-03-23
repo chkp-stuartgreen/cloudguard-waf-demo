@@ -2,7 +2,7 @@ version:  '3'
 
 services:
   juice-shop:
-    image: bkimminich/juice-shop:latest-arm
+    image: bkimminich/juice-shop
     #build:
     #  dockerfile: Dockerfile
     #  context: ./juice-shop
@@ -10,7 +10,7 @@ services:
         - '3000:3000'
 
   nginx-reverse-proxy:
-    container_name: infinity-next-appsec-standalone
+    container_name: nginx-reverse-proxy
     #platform: linux/amd64
     build:
       dockerfile: Dockerfile
