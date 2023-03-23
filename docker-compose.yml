@@ -11,18 +11,20 @@ services:
 
   nginx-reverse-proxy:
     container_name: infinity-next-appsec-standalone
-    platform: linux/amd64
+    #platform: linux/amd64
     build:
       dockerfile: Dockerfile
       context: ./nginx-reverse-proxy
       args:
-        NGINX_SERVER_FQDN: 
+        NGINX_SERVER_FQDN: ${NGINX_SERVER_FQDN}
+        token: ${TOKEN}
     ports:
       - '80:80'
     volumes:
       - ./nginx-reverse-proxy/data:/etc/cp/data
       - ./nginx-reverse-proxy/conf:/etc/cp/conf
       - ./nginx-reverse-proxy/logs:/var/log/nano_agent
+      - ./nginx-reverse-proxy/nginx_conf:/etc/nginx/conf.d/
     #ipc: shareable
     #image: checkpoint/infinity-next-nginx
     #volumes:
