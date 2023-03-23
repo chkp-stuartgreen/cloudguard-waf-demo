@@ -2,7 +2,7 @@ version:  '3'
 
 services:
   juice-shop:
-    image: bkimminich/juice-shop
+    image: bkimminich/juice-shop:latest-arm
     #build:
     #  dockerfile: Dockerfile
     #  context: ./juice-shop
@@ -10,7 +10,8 @@ services:
         - '3000:3000'
 
   nginx-reverse-proxy:
-    container_name: cp-appsec-nginx-reverse-proxy
+    container_name: infinity-next-appsec-standalone
+    platform: linux/amd64
     build:
       dockerfile: Dockerfile
       context: ./nginx-reverse-proxy
@@ -18,26 +19,31 @@ services:
         NGINX_SERVER_FQDN: 
     ports:
       - '80:80'
-    ipc: shareable
+    volumes:
+      - ./nginx-reverse-proxy/data:/etc/cp/data
+      - ./nginx-reverse-proxy/conf:/etc/cp/conf
+      - ./nginx-reverse-proxy/logs:/var/log/nano_agent
+    #ipc: shareable
     #image: checkpoint/infinity-next-nginx
     #volumes:
     #  - ./nginx-reverse-proxy/default:/etc/nginx/conf.d/default.conf
     
     
 
-  agent-container:
-    container_name: cp-appsec-agent-container
-    ipc: "container:cp-appsec-nginx-reverse-proxy"
-    volumes:
-      - ./agent-container/data:/etc/cp/data
-      - ./agent-container/conf:/etc/cp/conf
-      - ./agent-container/logs:/var/log/nano_agent
-    #build:
-    #  dockerfile: Dockerfile
-    #context: ./agent-container
-    image: checkpoint/infinity-next-nano-agent    
-    depends_on:
-      - nginx-reverse-proxy
-    command: ["/cp-nano-agent", "--token", "$TOKEN"]
+  #agent-container:
+  #  container_name: cp-appsec-agent-container
+  #  platform: linux/amd64
+  #  ipc: "container:cp-appsec-nginx-reverse-proxy"
+  #  volumes:
+  #    - ./agent-container/data:/etc/cp/data
+  #    - ./agent-container/conf:/etc/cp/conf
+  #    - ./agent-container/logs:/var/log/nano_agent
+  #  #build:
+  #  #  dockerfile: Dockerfile
+  #  #context: ./agent-container
+  #  image: checkpoint/infinity-next-nano-agent    
+  #  depends_on:
+  #    - nginx-reverse-proxy
+  #  command: ["/cp-nano-agent", "--token", "$TOKEN"]
 
 
