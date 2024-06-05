@@ -2,12 +2,13 @@ version:  '3'
 
 services:
   juice-shop:
-    image: bkimminich/juice-shop
+    #image: bkimminich/juice-shop
+    image: vulnerables/web-dvwa
     #build:
     #  dockerfile: Dockerfile
     #  context: ./juice-shop
     ports:
-        - '3000:3000'
+        - '3000:80'
 
   nginx-reverse-proxy:
     container_name: nginx-reverse-proxy

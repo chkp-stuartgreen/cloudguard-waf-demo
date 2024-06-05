@@ -1,15 +1,15 @@
 server_names_hash_bucket_size  128;
-upstream juiceshop_host {
-  server juice-shop:3000;
+upstream juiceshophost {
+  server juice-shop;
 }
 server {
   server_name ${NGINX_SERVER_FQDN};
   listen 80;
   location / {
-    proxy_pass http://juiceshop_host/;
+    proxy_pass http://juiceshophost/;
   }
   location /socket.io {
-    proxy_pass http://juiceshop_host/;
+    proxy_pass http://juiceshophost/;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "Upgrade";
