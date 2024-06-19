@@ -4,14 +4,18 @@ services:
   dvwa:
     image: vulnerables/web-dvwa
     ports:
-        - '3000:80'
-
+      - '3000:80'
   juiceshop:
     image: bkimminich/juice-shop 
     ports:
-        - '3001:3000'
-  cloudguard-waf-standalone:
-    container_name: cloudguard-waf-standalone
+      - '3001:3000'
+
+  vampi:
+    image: erev0s/vampi
+    ports:
+      - '3002:5000'
+
+  cloudguard-waf:
     image: checkpoint/cloudguard-appsec-standalone
     entrypoint: /cloudguard-appsec-standalone --token $token --ignore-all
     ports:
