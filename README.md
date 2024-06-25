@@ -14,7 +14,7 @@
 ## Instructions:
  
 * Configure a new profile in your [Check Point Infinity Portal](https://portal.checkpoint.com) tenant under WAF. This needs to be a Docker standalone type profile. Copy the token and keep it safe.
-* Create an asset for each of the applications above. The URL can be anything you like, so long as your client can resolve it (either through DNS or host file entry). The upstream / origin for each of the applications is **http://dvwa**, **http://juiceshop:3000/** and **http://vampi/**. 
+* Create an asset for each of the applications above. The URL can be anything you like, so long as your client can resolve it (either through DNS or host file entry). The upstream / origin for each of the applications is **http://dvwa**, **http://juiceshop:3000/** and **http://vampi:5000/**. 
 * If you run this locally, you will be able to access those ports directly on the containers, bypassing the WAF to show a with / without comparisson. **If you're hosting somewhere publicly accessible, make sure your security groups allow or prevent access to these as required.** 
 
 * Make sure you have Docker (or equivalent) installed and also docker-compose (included by default in most recent Docker packages)
